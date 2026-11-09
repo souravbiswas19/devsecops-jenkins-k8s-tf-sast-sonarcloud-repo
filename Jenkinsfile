@@ -51,7 +51,8 @@ pipeline {
                         -Dsonar.projectKey=souravbuggywebapp \
                         -Dsonar.organization=souravbuggywebapp \
                         -Dsonar.host.url=https://sonarcloud.io \
-                        -Dsonar.token="$SONAR_TOKEN"
+                        -Dsonar.token="$SONAR_TOKEN" \
+                        -Dsonar.nodejs.executable=/usr/bin/node-22
                     '''
                 }
             }
