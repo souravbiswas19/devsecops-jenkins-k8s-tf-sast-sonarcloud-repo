@@ -34,10 +34,11 @@ pipeline {
             }
         }
 
+        
         stage('SonarCloud Analysis') {
             steps {
-                echo 'Starting SonarCloud security and code quality analysis...'
-
+                echo 'Starting SonarCloud analysis...'
+        
                 withCredentials([
                     string(
                         credentialsId: 'sonarcloud-token',
@@ -46,11 +47,10 @@ pipeline {
                 ]) {
                     sh '''
                         mvn org.sonarsource.scanner.maven:sonar-maven-plugin:5.8.0.7211:sonar \
-                        -Dsonar.projectKey="$SONAR_PROJECT_KEY" \
-                        -Dsonar.organization="$SONAR_ORGANIZATION" \
-                        -Dsonar.host.url="$SONAR_HOST_URL" \
-                        -Dsonar.token="$SONAR_TOKEN" \
-                        -Dsonar.scanner.skipJreProvisioning=true
+                        -Dsonar.projectKey=souravbuggywebapp \
+                        -Dsonar.organization=souravbuggywebapp \
+                        -Dsonar.host.url=https://sonarcloud.io \
+                        -Dsonar.token="$SONAR_TOKEN"
                     '''
                 }
             }
